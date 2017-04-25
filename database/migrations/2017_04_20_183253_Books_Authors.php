@@ -19,12 +19,14 @@ class BooksAuthors extends Migration
         {
             $table->increments('id');
             $table->string('name');
+            $table->timestamps();
         });
 
         Schema::create('authors', function(Blueprint $table) 
         {
             $table->increments('id');
             $table->string('name');
+            $table->timestamps();
         });
 
         Schema::create('books', function(Blueprint $table) 
@@ -32,6 +34,7 @@ class BooksAuthors extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->timestamps();
         });
 
         Schema::create('book_authors', function(Blueprint $table)
@@ -39,6 +42,7 @@ class BooksAuthors extends Migration
             $table->increments('id');
             $table->integer('book_id')->unsigned();
             $table->integer('author_id')->unsigned();
+            $table->timestamps();
         });
 
         Schema::create('book_edition', function(Blueprint $table)
@@ -48,6 +52,7 @@ class BooksAuthors extends Migration
             $table->string('description');
             $table->integer('book_id')->unsigned();
             $table->integer('book_publisher_id')->unsigned();
+            $table->timestamps();
         });
 
     }
@@ -60,5 +65,10 @@ class BooksAuthors extends Migration
     public function down()
     {
         //
+        Schema::drop('book_edition');
+        Schema::drop('book_authors');
+        Schema::drop('books');
+        Schema::drop('authors');
+        Schema::drop('book_publishers');
     }
 }
