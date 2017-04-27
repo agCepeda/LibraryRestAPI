@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
 	public $table = 'sessions';
+
+
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 }
